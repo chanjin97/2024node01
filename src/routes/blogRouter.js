@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const mongoose = require("mongoose");
 const { Blog } = require("../models/Blog");
+const { User } = require("../models/User");
 const blogRouter = Router();
 
 blogRouter.post("/", async function (req, res) {
@@ -55,7 +56,7 @@ blogRouter.put("/:blogId", async function (req, res) {
 });
 blogRouter.patch("/:blogId/live", async function (req, res) {
   try {
-    const { bligId } = req.params;
+    const { blogId } = req.params;
     const { islive } = req.body;
 
     const blog = await Blog.findByIdAndUpdate(
