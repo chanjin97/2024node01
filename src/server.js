@@ -5,6 +5,7 @@ const app = express();
 const dotenv = require("dotenv");
 const { userRouter } = require("./routes/userRouter");
 const { blogRouter } = require("./routes/blogRouter");
+const { commentRouter } = require("./routes/commentRouter");
 
 dotenv.config();
 
@@ -16,8 +17,13 @@ const server = async () => {
     app.use(express.json());
 
     app.use("/user", userRouter);
+    // console.log("userRouter");
 
     app.use("/blog", blogRouter);
+    // console.log("blogRouter");
+
+    app.use("/blog/:blogId/Comment", commentRouter);
+    // console.log("blogId");
 
     app.listen(3000);
   } catch (error) {
